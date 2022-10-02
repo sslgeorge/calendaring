@@ -1,0 +1,43 @@
+{
+  "private": true,
+  "name": "calendaring",
+  "version": "0.0.0",
+  "license": "MIT",
+  "scripts": {
+    "build": "preact build",
+    "serve": "sirv build --port 8080 --cors --single",
+    "dev": "preact watch",
+    "lint": "eslint src",
+    "test": "jest"
+  },
+  "devDependencies": {
+    "@types/styled-components": "^5.1.26",
+    "@typescript-eslint/eslint-plugin": "^5.38.1",
+    "@typescript-eslint/parser": "^5.38.1",
+    "eslint": "^8.24.0",
+    "eslint-config-preact": "^1.1.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-config-xo": "^0.42.0",
+    "eslint-config-xo-typescript": "^0.53.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-react": "^7.31.8",
+    "jest": "^24.9.0",
+    "jest-preset-preact": "^1.0.0",
+    "preact-cli": "^3.0.0",
+    "prettier": "^2.7.1",
+    "sirv-cli": "1.0.3",
+    "typescript": "^4.8.4"
+  },
+  "dependencies": {
+    "date-fns": "^2.29.3",
+    "preact": "^10.3.2",
+    "styled-components": "^5.3.6"
+  },
+  "jest": {
+    "preset": "jest-preset-preact",
+    "setupFiles": [
+      "<rootDir>/tests/__mocks__/browserMocks.js",
+      "<rootDir>/tests/__mocks__/setupTests.js"
+    ]
+  }
+}
