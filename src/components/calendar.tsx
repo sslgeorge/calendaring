@@ -39,12 +39,6 @@ function Calendar(props: Props): VNode {
     paddingBottom = `${(1 / aspectRatio) * 100}%`;
   }
 
-  if (availableWidth !== null) {
-    height = availableWidth / aspectRatio;
-  } else {
-    paddingBottom = `${(1 / aspectRatio) * 100}%`;
-  }
-
   return (
     <CalendarContainer
       ref={ref}
