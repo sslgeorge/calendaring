@@ -8,7 +8,7 @@
   "bracketSpacing": true,
   "jsxBracketSameLine": false,
   "arrowParens": "always",
-  "printWidth": 60,
+  "printWidth": 80,
   "proseWrap": "always",
   "htmlWhitespaceSensitivity": "ignore",
   "endOfLine": "lf"

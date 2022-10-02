@@ -22,7 +22,7 @@ const Container = styled.div`
 export function Preview(): VNode {
   return (
     <Container>
-      <Calendar />
+      <Calendar date={new Date()} />
     </Container>
   );
 }
