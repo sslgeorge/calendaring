@@ -12,7 +12,6 @@ function CalendarView(): VNode {
   const ref = useRef(null);
   const { emitter } = useTable(refs.current);
   const { grid } = useGridGenerator();
-  console.log(grid, 'gridgridgrid');
 
   const handleMouseMove = (ev: MouseEvent) => {
     emitter.emit('pointermove', ev);
