@@ -1,6 +1,9 @@
 import type { VNode } from 'preact';
 import { CalendarContainer } from './styles';
 import { useCallback, useEffect, useRef, useState } from 'preact/compat';
+import CalendarView from './calendar-view';
+import { CalendarOptionsProvider } from '../contexts/calendar-options';
+import { Day } from '../types';
 
 type Props = {
   date: string | Date;
@@ -40,11 +43,19 @@ function Calendar(props: Props): VNode {
   }
 
   return (
-    <CalendarContainer
-      ref={ref}
-      $height={height}
-      $paddingBottom={paddingBottom}
-    />
+    <CalendarOptionsProvider
+      date={new Date()}
+      height={height}
+      startWeekOn={Day.Sunday}
+    >
+      <CalendarContainer
+        ref={ref}
+        $height={height}
+        $paddingBottom={paddingBottom}
+      >
+        <CalendarView />
+      </CalendarContainer>
+    </CalendarOptionsProvider>
   );
 }
 
