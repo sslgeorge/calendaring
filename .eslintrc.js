@@ -23,3 +23,7 @@ module.exports = {
     'react/react-in-jsx-scope': ['off'],
   },
 };
+// 'plugin:import/recommended',
+//   'plugin:import/typescript',
+//   'airbnb-typescript',
+//   'prettier',

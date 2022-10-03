@@ -24,7 +24,9 @@ function monthPadStart(date: Date, startWeekOn: Day) {
     return date;
   }
 
-  return sub(monthStart, { days: day - startWeekOn });
+  return sub(monthStart, {
+    days: day - startWeekOn,
+  });
 }
 
 function monthPadEnd(date: Date, startWeekOn: Day) {
@@ -33,15 +35,23 @@ function monthPadEnd(date: Date, startWeekOn: Day) {
   const daysPadStart = getDay(firstDay) - startWeekOn;
   const daysPadEnd = MONTH_DIMENSION - (getDaysInMonth(date) + daysPadStart);
 
-  return add(lastDay, { days: daysPadEnd });
+  return add(lastDay, {
+    days: daysPadEnd,
+  });
 }
 
 function getWeekDays(date: Date): Date[] {
   const weekDays: Date[] = [];
-  const firstDay = startOfWeek(date, { weekStartsOn: 1 });
+  const firstDay = startOfWeek(date, {
+    weekStartsOn: 1,
+  });
 
   for (let i = 0; i < 7; i++) {
-    weekDays.push(add(firstDay, { days: i }));
+    weekDays.push(
+      add(firstDay, {
+        days: i,
+      })
+    );
   }
 
   return weekDays;
@@ -61,7 +71,9 @@ function useGridDays(date: Date) {
   let day = firstDayOfMonth;
   while (day <= lastDayOfMonth) {
     days.push(day);
-    day = add(day, { days: 1 });
+    day = add(day, {
+      days: 1,
+    });
   }
 
   return days;

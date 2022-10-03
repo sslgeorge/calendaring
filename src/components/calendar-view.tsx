@@ -34,7 +34,11 @@ function CalendarView(): VNode {
 
   return (
     <View ref={ref}>
-      <TableView grid={grid} ref={refs} onMouseDown={handleMouseDown} />
+      <TableView
+        grid={grid}
+        ref={refs}
+        onMouseDown={handleMouseDown}
+      />
     </View>
   );
 }

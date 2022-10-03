@@ -1,63 +1,47 @@
-import { GridRefs } from '../types';
-import { usePositions } from './use-positions';
+import { Box, GridRefs } from '../types';
+import { useCellAxis } from './use-cell-axis';
 import { EventEmitter } from 'events';
-import { useMemo } from 'preact/hooks';
+import { useMemo, useRef } from 'preact/hooks';
 import { useCallback } from 'preact/compat';
 
 const emitter = new EventEmitter();
 
 export function useTable(ref?: GridRefs) {
-  const positions = usePositions(ref);
-  const { tableRef } = ref ?? {};
-
-  const computeGridPoint = useCallback(
-    (pageX: number, pageY: number): [number, number] => {
-      if (!tableRef) return [0, 0];
-
-      const { left, top } = tableRef.getBoundingClientRect();
-      const x = pageX - left;
-      const y = pageY - top;
-
-      return [x, y];
-    },
-    [tableRef],
-  );
-
-  const computeCellAxis = useCallback(
-    (pageX: number, pageY: number) => {
-      const [x, y] = computeGridPoint(pageX, pageY);
-      const { row, col } = positions.getCellAxis(x, y);
-      return { row, col };
-    },
-    [computeGridPoint, positions],
-  );
+  const movingBox = useRef<Box>(null);
+  const { getCellBox } = useCellAxis(ref);
 
   const handlePointerDown = useCallback(
     (ev: MouseEvent) => {
-      const axis = computeCellAxis(ev.pageX, ev.pageY);
-      console.log(axis, 'pointpoint');
+      const box = getCellBox(ev.pageX, ev.pageY);
+      console.log(box);
+      // const axis = computeCellAxis(ev.pageX, ev.pageY);
+      // console.log(axis, 'pointpoint');
     },
-    [computeCellAxis],
+    [getCellBox]
   );
+
+  const handlePointerMove = useCallback((ev: MouseEvent) => {
+    // const axis = computeCellAxis(ev.pageX, ev.pageY);
+    // console.log(axis, 'pointpoint');
+  }, []);
+
+  const handlePointerUp = useCallback((ev: MouseEvent) => {
+    // const axis = computeCellAxis(ev.pageX, ev.pageY);
+    // console.log(axis, 'pointpoint');
+  }, []);
+
   useMemo(() => {
     emitter.removeAllListeners();
     emitter.addListener('pointerdown', handlePointerDown);
-    emitter.addListener('pointerup', () => {});
-    emitter.addListener('pointermove', () => {});
-  }, [handlePointerDown]);
+    emitter.addListener('pointermove', handlePointerMove);
+    emitter.addListener('pointerup', handlePointerUp);
+  }, [handlePointerDown, handlePointerMove, handlePointerUp]);
 
   if (!ref || !ref.tableRef) {
     return {};
   }
 
   return {
-    // width: offsetWidth,
-    // left: offsetLeft,
-    // top: offsetTop,
-    // cells,
-    // rows,
-    // columns,
-    positions,
     emitter,
   } as const;
 }

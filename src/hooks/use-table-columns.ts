@@ -1,10 +1,10 @@
-import { GridRefs } from '../types'
+import { GridRefs } from '../types';
 
 export function useTableColumns(ref?: GridRefs) {
   if (!ref || !ref.cellRef) {
-    return {}
+    return {};
   }
-  const { cellRef } = ref
+  const { cellRef } = ref;
 
-  return {}
+  return {};
 }

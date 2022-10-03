@@ -13,3 +13,10 @@ export enum Day {
   Friday = 5,
   Saturday = 6,
 }
+
+export type Box = {
+  col: number;
+  row: number;
+  element: HTMLElement;
+  rect: DOMRect;
+};

@@ -1,7 +1,8 @@
 import { VNode } from 'preact';
-import { Table, Tbody, Td, Tr } from './styles';
+import { Table, Tbody, Tr } from './styles';
 import { useImperativeHandle, useRef } from 'preact/hooks';
 import { forwardRef } from 'react';
+import TableCell from './table-cell';
 
 type Props = {
   grid: Date[][];
@@ -21,11 +22,7 @@ function TableView(props: Props, ref): VNode {
     cellRef: cellRef.current,
   }));
 
-  const createCellRef = (
-    row: number,
-    column: number,
-    ref: HTMLTableCellElement,
-  ) => {
+  const createCellRef = (row: number, column: number, ref: HTMLTableCellElement) => {
     if (!cellRef.current[row]) {
       cellRef.current[row] = [];
     }
@@ -34,18 +31,15 @@ function TableView(props: Props, ref): VNode {
 
   const renderRow = (row: Date[], cellRow) => {
     return (
-      <Tr>
+      <Tr key={cellRow}>
         {row.map((cell, cellColumn) => {
           return (
-            <Td
+            <TableCell
               key={cellColumn}
               ref={(ref) => createCellRef(cellRow, cellColumn, ref)}
-            >
-              A{' '}
-              <sub>
-                {cellRow},{cellColumn}
-              </sub>
-            </Td>
+              row={cellRow}
+              column={cellColumn}
+            />
           );
         })}
       </Tr>
@@ -54,7 +48,10 @@ function TableView(props: Props, ref): VNode {
 
   return (
     <Table ref={tableRef}>
-      <Tbody onMouseDown={onMouseDown} ref={tbodyRef}>
+      <Tbody
+        onMouseDown={onMouseDown}
+        ref={tbodyRef}
+      >
         {grid.map(renderRow)}
       </Tbody>
     </Table>
