@@ -2,8 +2,8 @@ import type { VNode } from 'preact';
 import { CalendarContainer } from './styles';
 import { useCallback, useEffect, useRef, useState } from 'preact/compat';
 import CalendarView from './calendar-view';
-import { CalendarOptionsProvider } from '../contexts/calendar-options';
 import { Day } from '../types';
+import { StoreContextProvider } from '../store-context';
 
 type Props = {
   date: string | Date;
@@ -43,7 +43,7 @@ function Calendar(props: Props): VNode {
   }
 
   return (
-    <CalendarOptionsProvider
+    <StoreContextProvider
       date={new Date()}
       height={height}
       startWeekOn={Day.Sunday}
@@ -55,7 +55,7 @@ function Calendar(props: Props): VNode {
       >
         <CalendarView />
       </CalendarContainer>
-    </CalendarOptionsProvider>
+    </StoreContextProvider>
   );
 }
 

@@ -8,9 +8,8 @@ import {
   startOfWeek,
   sub,
 } from 'date-fns';
-import { useContext } from 'preact/hooks';
-import { CalendarOptionsContext } from '../contexts/calendar-options';
 import { Day } from '../types';
+import { useStoreContext } from '../store-context';
 
 const MONTH_COLUMNS = 7;
 const MONTH_ROWS = 6;
@@ -62,7 +61,7 @@ function dayName(date: Date) {
 }
 
 function useGridDays(date: Date) {
-  const { startWeekOn } = useContext(CalendarOptionsContext);
+  const { startWeekOn } = useStoreContext();
 
   const days = [];
   const firstDayOfMonth = monthPadStart(date, startWeekOn);

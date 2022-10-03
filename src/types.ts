@@ -20,3 +20,14 @@ export type Box = {
   element: HTMLElement;
   rect: DOMRect;
 };
+
+export type StoreType = {
+  date: Date;
+  highlight: [];
+  height?: number;
+  aspectRatio?: number;
+  daysPerWeek?: DayPerWeek;
+  startWeekOn?: Day;
+};
+
+export type DayPerWeek = 1 | 2 | 3 | 4 | 5 | 6 | 7;
