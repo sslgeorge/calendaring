@@ -1,5 +1,6 @@
 import { Box, GridRefs } from '../types';
 import { useMemo } from 'preact/hooks';
+import { useCallback } from 'preact/compat';
 
 function buildBox(boxRect: DOMRect, originRect: DOMRect, el: HTMLElement) {
   return {
@@ -51,10 +52,6 @@ export function useCellAxis(ref?: GridRefs) {
   );
   const rowsPosition = useMemo(() => generateRowsPosition(cellRef, tableRef), [cellRef, tableRef]);
 
-  if (!ref || !ref.tableRef) {
-    return {};
-  }
-
   const getCellAxis = (pageX: number, pageY: number) => {
     const [x, y] = computeGridPoint(tableRef, pageX, pageY);
     const col = columnsPosition.findIndex(
@@ -70,17 +67,25 @@ export function useCellAxis(ref?: GridRefs) {
     };
   };
 
-  const getCellBox = (pageX: number, pageY: number): Box => {
-    const { col, row } = getCellAxis(pageX, pageY);
-    const el = cellRef[row][col];
+  const getCellBox = useCallback(
+    (pageX: number, pageY: number): Box | null => {
+      const { col, row } = getCellAxis(pageX, pageY);
+      if (col === -1 || row === -1) return null;
+      const el = cellRef[row][col];
 
-    return {
-      col,
-      row,
-      element: el,
-      rect: el.getBoundingClientRect(),
-    };
-  };
+      return {
+        col,
+        row,
+        element: el,
+        rect: el.getBoundingClientRect(),
+      };
+    },
+    [cellRef, getCellAxis]
+  );
+
+  if (!ref || !ref.tableRef) {
+    return {};
+  }
 
   return {
     getCellAxis,

@@ -21,9 +21,19 @@ export type Box = {
   rect: DOMRect;
 };
 
+export type DateRange = {
+  start: Date;
+  end: Date;
+};
+
+export type Highlight = {
+  allDay: boolean;
+  range: DateRange;
+};
+
 export type StoreType = {
   date: Date;
-  highlight: [];
+  highlight: Highlight | null;
   height?: number;
   aspectRatio?: number;
   daysPerWeek?: DayPerWeek;
@@ -31,3 +41,8 @@ export type StoreType = {
 };
 
 export type DayPerWeek = 1 | 2 | 3 | 4 | 5 | 6 | 7;
+
+export type CellHighlightType = {
+  day: Date;
+  highlight: boolean;
+};

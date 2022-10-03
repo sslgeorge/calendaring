@@ -1,7 +1,30 @@
-import { StoreType } from '../types';
+import { Highlight, StoreType } from '../types';
 
-export type Action = { type: string };
+export type Action =
+  | { type: 'HIGHLIGHT_CELL'; payload: Highlight }
+  | { type: 'UNHIGHLIGHT_CELL' }
+  | { type: 'CHANGE_DATE' };
 
 export function storeReducer(state: StoreType, action: Action) {
-  return state;
+  let newState = state;
+
+  if (action.type === 'UNHIGHLIGHT_CELL') {
+    newState = {
+      ...state,
+      highlight: null,
+    };
+  }
+
+  if (action.type === 'HIGHLIGHT_CELL') {
+    newState = {
+      ...state,
+      highlight: action.payload,
+    };
+  }
+
+  // console.group('Action');
+  // console.log('Action: ', action);
+  // console.log('State:', state);
+  // console.groupEnd();
+  return newState;
 }

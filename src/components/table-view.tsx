@@ -3,15 +3,17 @@ import { Table, Tbody, Tr } from './styles';
 import { useImperativeHandle, useRef } from 'preact/hooks';
 import { forwardRef } from 'react';
 import TableCell from './table-cell';
+import { CellHighlightType } from '../types';
 
 type Props = {
   grid: Date[][];
   onMouseDown?: (e: MouseEvent) => void;
   onClick?: (e: MouseEvent) => void;
+  highlightGrid?: CellHighlightType[][];
 };
 
 function TableView(props: Props, ref): VNode {
-  const { grid, onMouseDown } = props;
+  const { grid, onMouseDown, highlightGrid } = props;
   const tbodyRef = useRef<HTMLTableSectionElement>();
   const tableRef = useRef<HTMLTableElement>();
   const cellRef = useRef<HTMLTableCellElement[][]>([]);
@@ -39,6 +41,7 @@ function TableView(props: Props, ref): VNode {
               ref={(ref) => createCellRef(cellRow, cellColumn, ref)}
               row={cellRow}
               column={cellColumn}
+              highlight={highlightGrid?.[cellRow]?.[cellColumn]?.highlight}
             />
           );
         })}
@@ -48,10 +51,7 @@ function TableView(props: Props, ref): VNode {
 
   return (
     <Table ref={tableRef}>
-      <Tbody
-        onMouseDown={onMouseDown}
-        ref={tbodyRef}
-      >
+      <Tbody onMouseDown={onMouseDown} ref={tbodyRef}>
         {grid.map(renderRow)}
       </Tbody>
     </Table>

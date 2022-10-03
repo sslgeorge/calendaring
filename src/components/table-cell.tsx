@@ -4,10 +4,11 @@ import { forwardRef } from 'react';
 type Props = {
   row: number;
   column: number;
+  highlight?: boolean;
 };
 
 function TableCell(props: Props, ref) {
-  const { row, column } = props;
+  const { row, column, highlight } = props;
   return (
     <Td ref={ref}>
       <CellFrame>
@@ -17,9 +18,9 @@ function TableCell(props: Props, ref) {
             {row},{column}
           </sub>
         </DayDisplay>
-        <EventsDisplay>dddd</EventsDisplay>
+        <EventsDisplay></EventsDisplay>
         <BgDisplay>
-          <CellHighlight />
+          <CellHighlight show={highlight} />
         </BgDisplay>
       </CellFrame>
     </Td>

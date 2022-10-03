@@ -53,12 +53,18 @@ export const Td = styled.td`
   text-align: left;
   text-align: right;
   vertical-align: top;
+  padding: 0;
+  margin: 0;
 `;
 
 export const CellFrame = styled.div`
   position: relative;
   min-height: 100%;
 `;
+
+interface CellHighlightProps {
+  show: boolean;
+}
 
 export const CellHighlight = styled.div`
   position: absolute;
@@ -67,6 +73,7 @@ export const CellHighlight = styled.div`
   right: 0;
   left: 0;
   background: rgba(188, 232, 241, 0.3);
+  ${({ show }: CellHighlightProps) => !show && 'display: none;'}
 `;
 
 export const DayDisplay = styled.div``;
