@@ -7,8 +7,6 @@ export function useTableCells(ref?: GridRefs) {
   const { cellRef, tableRef } = ref;
   const { offsetWidth, offsetLeft, offsetTop } = tableRef;
 
-  console.log(cellRef);
-
   return {
     elements: cellRef,
   };

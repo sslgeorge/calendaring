@@ -1,6 +1,6 @@
 import { createContext, VNode } from 'preact';
 import { Action, storeReducer } from './store-reducer';
-import { useReducer } from 'preact/hooks';
+import { useEffect, useReducer } from 'preact/hooks';
 import { Day, StoreType } from '../types';
 
 export const StoreContext = createContext<StoreType>(null);
@@ -19,6 +19,7 @@ export function StoreContextProvider(props: Props): VNode {
     aspectRatio = 1.35,
     daysPerWeek = 7,
   } = props;
+
   const [state, dispatch] = useReducer<StoreType, Action>(storeReducer, {
     date,
     height,
@@ -27,6 +28,11 @@ export function StoreContextProvider(props: Props): VNode {
     daysPerWeek,
     highlight: null,
   });
+
+  useEffect(() => {
+    dispatch({ type: 'SET_HEIGHT', payload: height });
+  }, [height]);
+
   return (
     <StoreContext.Provider value={state}>
       <StoreDispatchContext.Provider value={dispatch}>{children}</StoreDispatchContext.Provider>

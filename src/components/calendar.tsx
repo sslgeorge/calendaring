@@ -1,9 +1,10 @@
 import type { VNode } from 'preact';
 import { CalendarContainer } from './styles';
-import { useCallback, useEffect, useRef, useState } from 'preact/compat';
+import { useCallback, useState } from 'preact/compat';
 import CalendarView from './calendar-view';
 import { Day } from '../types';
 import { StoreContextProvider } from '../store-context';
+import { useEffect, useRef } from 'preact/hooks';
 
 type Props = {
   date: string | Date;
@@ -34,25 +35,22 @@ function Calendar(props: Props): VNode {
   }, [handleWindowResize]);
 
   let height = 0;
-  let paddingBottom = '';
+  let paddingBottom = 0;
 
   if (availableWidth !== null) {
     height = availableWidth / aspectRatio;
   } else {
-    paddingBottom = `${(1 / aspectRatio) * 100}%`;
+    paddingBottom = (1 / aspectRatio) * 100;
   }
 
+  console.log(paddingBottom, 'paddingBottompaddingBottom');
   return (
-    <StoreContextProvider
-      date={new Date()}
-      height={height}
-      startWeekOn={Day.Sunday}
-    >
+    <StoreContextProvider date={new Date(date)} height={height} startWeekOn={Day.Sunday}>
       <CalendarContainer
         ref={ref}
         $height={height}
-        $paddingBottom={paddingBottom}
-      >
+        $paddingBottom={`${paddingBottom}%`}
+        minHeight={paddingBottom}>
         <CalendarView />
       </CalendarContainer>
     </StoreContextProvider>

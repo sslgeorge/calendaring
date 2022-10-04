@@ -3,11 +3,14 @@ import styled from 'styled-components';
 type CalendarProps = {
   $height?: number;
   $paddingBottom?: number;
+  $minHeight?: number;
 };
 
 export const CalendarContainer = styled.div<CalendarProps>`
-  height: ${({ $height }) => $height}px;
-  padding-bottom: ${({ $paddingBottom }) => $paddingBottom};
+  // height: ${({ $height }) => $height}px;
+  // padding-bottom: ${({ $paddingBottom }) => $paddingBottom};
+  // min-height: ${({ $minHeight }) => $minHeight}px;
+  height: 602.2222222222222px;
 `;
 
 export const View = styled.div`

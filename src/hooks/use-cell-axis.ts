@@ -1,6 +1,7 @@
 import { Box, GridRefs } from '../types';
 import { useMemo } from 'preact/hooks';
 import { useCallback } from 'preact/compat';
+import { useStoreContext } from '../store-context';
 
 function buildBox(boxRect: DOMRect, originRect: DOMRect, el: HTMLElement) {
   return {
@@ -45,12 +46,23 @@ function computeGridPoint(
 
 export function useCellAxis(ref?: GridRefs) {
   const { cellRef, tableRef } = ref ?? {};
+  const { height } = useStoreContext();
+  const columnsPosition = useMemo(() => {
+    if (height === 0) {
+      return [];
+    }
 
-  const columnsPosition = useMemo(
-    () => generateColumnsPosition(cellRef, tableRef),
-    [cellRef, tableRef]
-  );
-  const rowsPosition = useMemo(() => generateRowsPosition(cellRef, tableRef), [cellRef, tableRef]);
+    return generateColumnsPosition(cellRef, tableRef);
+  }, [cellRef, tableRef, height]);
+
+
+  const rowsPosition = useMemo(() => {
+    if (height === 0) {
+      return [];
+    }
+
+    return generateRowsPosition(cellRef, tableRef);
+  }, [cellRef, tableRef, height]);
 
   const getCellAxis = (pageX: number, pageY: number) => {
     const [x, y] = computeGridPoint(tableRef, pageX, pageY);

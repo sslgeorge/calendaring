@@ -29,7 +29,7 @@ function getDateRange(range0: DateRange, range1: DateRange): DateRange {
 }
 
 export function useTable(ref?: GridRefs) {
-  const { date, startWeekOn } = useStoreContext();
+  const { date, startWeekOn, height } = useStoreContext();
   const movingBox = useRef<Box>(null);
   const initialBox = useRef<Box>(null);
   const finalBox = useRef<Box>(null);
@@ -62,6 +62,7 @@ export function useTable(ref?: GridRefs) {
   const handlePointerDown = useCallback(
     (ev: MouseEvent) => {
       const box = getCellBox(ev.pageX, ev.pageY);
+      if (!box) return;
       const day = monthCalendarGrid[box.row][box.col];
       const range = makeDateRange(day);
 
