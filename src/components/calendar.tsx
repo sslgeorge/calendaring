@@ -9,10 +9,11 @@ import { useEffect, useRef } from 'preact/hooks';
 type Props = {
   date: string | Date;
   aspectRatio?: number;
+  showHighlights?: boolean;
 };
 
 function Calendar(props: Props): VNode {
-  const { date, aspectRatio = 1.35 } = props;
+  const { date, aspectRatio = 1.35, showHighlights } = props;
   const [availableWidth, setAvailableWidth] = useState<number>(null);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -43,9 +44,12 @@ function Calendar(props: Props): VNode {
     paddingBottom = (1 / aspectRatio) * 100;
   }
 
-  console.log(paddingBottom, 'paddingBottompaddingBottom');
   return (
-    <StoreContextProvider date={new Date(date)} height={height} startWeekOn={Day.Sunday}>
+    <StoreContextProvider
+      date={new Date(date)}
+      height={height}
+      startWeekOn={Day.Sunday}
+      showHighlights={showHighlights}>
       <CalendarContainer
         ref={ref}
         $height={height}

@@ -13,7 +13,7 @@ function CalendarView(): VNode {
   const ref = useRef(null);
   const { emitter, monthCalendarGrid } = useTable(refs.current);
   const { highlightGrid } = useHighlightGrid();
-  const { highlight } = useStoreContext();
+  const { showHighlights } = useStoreContext();
 
   const handleMouseMove = (ev: MouseEvent) => {
     emitter.emit('pointermove', ev);
@@ -41,6 +41,7 @@ function CalendarView(): VNode {
         ref={refs}
         onMouseDown={handleMouseDown}
         highlightGrid={highlightGrid}
+        showHighlights={showHighlights}
       />
     </View>
   );

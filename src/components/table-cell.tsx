@@ -5,10 +5,11 @@ type Props = {
   row: number;
   column: number;
   highlight?: boolean;
+  showHighlights?: boolean;
 };
 
 function TableCell(props: Props, ref) {
-  const { row, column, highlight } = props;
+  const { row, column, highlight, showHighlights } = props;
   return (
     <Td ref={ref}>
       <CellFrame>
@@ -18,9 +19,9 @@ function TableCell(props: Props, ref) {
             {row},{column}
           </sub>
         </DayDisplay>
-        <EventsDisplay></EventsDisplay>
+        <EventsDisplay />
         <BgDisplay>
-          <CellHighlight show={highlight} />
+          <CellHighlight show={showHighlights && highlight} />
         </BgDisplay>
       </CellFrame>
     </Td>

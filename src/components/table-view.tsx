@@ -10,10 +10,11 @@ type Props = {
   onMouseDown?: (e: MouseEvent) => void;
   onClick?: (e: MouseEvent) => void;
   highlightGrid?: CellHighlightType[][];
+  showHighlights?: boolean;
 };
 
 function TableView(props: Props, ref): VNode {
-  const { grid, onMouseDown, highlightGrid } = props;
+  const { grid, onMouseDown, highlightGrid, showHighlights } = props;
   const tbodyRef = useRef<HTMLTableSectionElement>();
   const tableRef = useRef<HTMLTableElement>();
   const cellRef = useRef<HTMLTableCellElement[][]>([]);
@@ -41,6 +42,7 @@ function TableView(props: Props, ref): VNode {
               ref={(ref) => createCellRef(cellRow, cellColumn, ref)}
               row={cellRow}
               column={cellColumn}
+              showHighlights={showHighlights}
               highlight={highlightGrid?.[cellRow]?.[cellColumn]?.highlight}
             />
           );

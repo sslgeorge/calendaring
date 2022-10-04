@@ -38,6 +38,7 @@ export type StoreType = {
   aspectRatio?: number;
   daysPerWeek?: DayPerWeek;
   startWeekOn?: Day;
+  showHighlights?: boolean;
 };
 
 export type DayPerWeek = 1 | 2 | 3 | 4 | 5 | 6 | 7;

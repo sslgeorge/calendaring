@@ -8,7 +8,10 @@ export const StoreDispatchContext = createContext<(action: Action) => void>(null
 
 type Props = {
   children: VNode;
-} & Pick<StoreType, 'date' | 'height' | 'startWeekOn' | 'aspectRatio' | 'daysPerWeek'>;
+} & Pick<
+  StoreType,
+  'date' | 'height' | 'startWeekOn' | 'aspectRatio' | 'daysPerWeek' | 'showHighlights'
+>;
 
 export function StoreContextProvider(props: Props): VNode {
   const {
@@ -18,6 +21,7 @@ export function StoreContextProvider(props: Props): VNode {
     startWeekOn = Day.Sunday,
     aspectRatio = 1.35,
     daysPerWeek = 7,
+    showHighlights,
   } = props;
 
   const [state, dispatch] = useReducer<StoreType, Action>(storeReducer, {
@@ -27,6 +31,7 @@ export function StoreContextProvider(props: Props): VNode {
     aspectRatio,
     daysPerWeek,
     highlight: null,
+    showHighlights,
   });
 
   useEffect(() => {
