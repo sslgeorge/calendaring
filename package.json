@@ -4,13 +4,11 @@
   "version": "0.0.0",
   "license": "MIT",
   "type": "module",
-  "source": "src/calendaring.ts",
-  "exports": {
-    "default": "./dist/calendaring.js"
-  },
-  "main": "./dist/calendaring.js",
+  "title": "Calendaring",
+  "source": "src/calendaring.tsx",
+  "main": "./build/calendaring.js",
   "scripts": {
-    "build": "microbundle",
+    "build": "microbundle --name Calendaring --tsconfig ./tsconfig.json --format umd",
     "build-preact": "preact build",
     "serve": "sirv build --port 8080 --cors --single",
     "dev": "preact watch",
