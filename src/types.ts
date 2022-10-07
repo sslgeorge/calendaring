@@ -39,6 +39,7 @@ export type StoreType = {
   daysPerWeek?: DayPerWeek;
   startWeekOn?: Day;
   showHighlights?: boolean;
+  events?: Event[];
 };
 
 export type DayPerWeek = 1 | 2 | 3 | 4 | 5 | 6 | 7;
@@ -46,4 +47,13 @@ export type DayPerWeek = 1 | 2 | 3 | 4 | 5 | 6 | 7;
 export type CellHighlightType = {
   day: Date;
   highlight: boolean;
+};
+
+export type Event = {
+  id: string;
+  title: string;
+  start: Date;
+  end: Date;
+  allDay?: boolean;
+  groupId?: string;
 };

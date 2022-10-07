@@ -1,10 +1,10 @@
 import type { VNode } from 'preact';
 import { CalendarContainer } from './styles';
 import { useCallback, useState } from 'preact/compat';
-import CalendarView from './calendar-view';
 import { Day } from '../types';
 import { StoreContextProvider } from '../store-context';
 import { useEffect, useRef } from 'preact/hooks';
+import { DayGridMonth } from '@src/components/day-grid-month/day-grid-month';
 
 type Props = {
   date: string | Date;
@@ -13,7 +13,7 @@ type Props = {
 };
 
 function Calendar(props: Props): VNode {
-  const { date, aspectRatio = 1.35, showHighlights } = props;
+  const { date, aspectRatio = 1.35, showHighlights = true } = props;
   const [availableWidth, setAvailableWidth] = useState<number>(null);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -55,7 +55,8 @@ function Calendar(props: Props): VNode {
         $height={height}
         $paddingBottom={`${paddingBottom}%`}
         minHeight={paddingBottom}>
-        <CalendarView />
+        <DayGridMonth />
+        {/*{height > 0 && <CalendarView />}*/}
       </CalendarContainer>
     </StoreContextProvider>
   );

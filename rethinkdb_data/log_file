@@ -1,0 +1,22 @@
+2022-10-06T19:47:24.991428000 0.028389s notice: Recursively removing directory /Users/okpe/Documents/calendaring/rethinkdb_data/tmp
+2022-10-06T19:47:24.993555000 0.030515s notice: Initializing directory /Users/okpe/Documents/calendaring/rethinkdb_data
+2022-10-06T19:47:24.993651000 0.030611s info: Creating a default database for your convenience. (This is because you ran 'rethinkdb' without 'create', 'serve', or '--join', and the directory '/Users/okpe/Documents/calendaring/rethinkdb_data' did not already exist or is empty.)
+2022-10-06T19:47:24.993690000 0.030650s notice: Running rethinkdb 2.4.2 (CLANG 13.1.6 (clang-1316.0.21.2.5))...
+2022-10-06T19:47:25.000905000 0.037866s notice: Running on Darwin 22.1.0 x86_64
+2022-10-06T19:47:25.001004000 0.037964s notice: Loading data from directory /Users/okpe/Documents/calendaring/rethinkdb_data
+2022-10-06T19:47:25.147986000 0.184944s info: Automatically using cache size of 1388 MB
+2022-10-06T19:47:25.148983000 0.185941s notice: Listening for intracluster connections on port 29015
+2022-10-06T19:47:25.150979000 0.187938s notice: Listening for client driver connections on port 28015
+2022-10-06T19:47:25.151057000 0.188015s notice: Listening for administrative HTTP connections on port 8080
+2022-10-06T19:47:25.151064000 0.188022s notice: Listening on cluster addresses: 127.0.0.1, ::1
+2022-10-06T19:47:25.151069000 0.188027s notice: Listening on driver addresses: 127.0.0.1, ::1
+2022-10-06T19:47:25.151078000 0.188036s notice: Listening on http addresses: 127.0.0.1, ::1
+2022-10-06T19:47:25.151088000 0.188046s notice: To fully expose RethinkDB on the network, bind to all addresses by running rethinkdb with the `--bind all` command line option.
+2022-10-06T19:47:25.151099000 0.188057s notice: Server ready, "Georges_MacBook_Pro_local_6sg" 469b3abe-8d35-4e4d-8547-7e93f20678c1
+2022-10-06T19:48:08.826886000 43.863311s warn: Received invalid clustering header from [::1]:55533, closing connection -- something might be connecting to the wrong port.
+2022-10-06T19:48:08.827659000 43.864083s warn: Received invalid clustering header from [::1]:55534, closing connection -- something might be connecting to the wrong port.
+2022-10-06T19:53:43.979019000 379.011350s notice: Server got SIGINT from pid 45139, uid 501; shutting down...
+2022-10-06T19:53:43.979203000 379.011534s notice: Shutting down client connections...
+2022-10-06T19:53:43.979361000 379.011692s notice: All client connections closed.
+2022-10-06T19:53:43.979366000 379.011697s notice: Shutting down storage engine... (This may take a while if you had a lot of unflushed data in the writeback cache.)
+2022-10-06T19:53:43.979736000 379.012067s notice: Storage engine shut down.

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from '@emotion/styled';
 
 type CalendarProps = {
   $height?: number;
@@ -7,10 +7,9 @@ type CalendarProps = {
 };
 
 export const CalendarContainer = styled.div<CalendarProps>`
-  // height: ${({ $height }) => $height}px;
-  // padding-bottom: ${({ $paddingBottom }) => $paddingBottom};
-  // min-height: ${({ $minHeight }) => $minHeight}px;
-  height: 602.2222222222222px;
+  height: ${({ $height }) => $height}px;
+  padding-bottom: ${({ $paddingBottom }) => $paddingBottom};
+  min-height: ${({ $minHeight }) => $minHeight}px;
 `;
 
 export const View = styled.div`

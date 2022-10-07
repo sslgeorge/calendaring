@@ -32,18 +32,19 @@ function TableView(props: Props, ref): VNode {
     cellRef.current[row][column] = ref;
   };
 
-  const renderRow = (row: Date[], cellRow) => {
+  const renderWeek = (week: Date[], weekIndex) => {
     return (
-      <Tr key={cellRow}>
-        {row.map((cell, cellColumn) => {
+      <Tr key={weekIndex}>
+        {week.map((date, cellColumn) => {
           return (
             <TableCell
               key={cellColumn}
-              ref={(ref) => createCellRef(cellRow, cellColumn, ref)}
-              row={cellRow}
+              ref={(ref) => createCellRef(weekIndex, cellColumn, ref)}
+              row={weekIndex}
               column={cellColumn}
               showHighlights={showHighlights}
-              highlight={highlightGrid?.[cellRow]?.[cellColumn]?.highlight}
+              highlight={highlightGrid?.[weekIndex]?.[cellColumn]?.highlight}
+              date={date}
             />
           );
         })}
@@ -54,7 +55,7 @@ function TableView(props: Props, ref): VNode {
   return (
     <Table ref={tableRef}>
       <Tbody onMouseDown={onMouseDown} ref={tbodyRef}>
-        {grid.map(renderRow)}
+        {grid.map(renderWeek)}
       </Tbody>
     </Table>
   );

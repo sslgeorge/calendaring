@@ -11,7 +11,7 @@ module.exports = {
     },
   },
   parser: '@typescript-eslint/parser',
-  plugins: ['react', '@typescript-eslint'],
+  plugins: ['react', '@typescript-eslint', 'import'],
   extends: [
     'preact',
     'eslint:recommended',
@@ -23,7 +23,10 @@ module.exports = {
   ],
   settings: {
     'import/resolver': {
-      typescript: true,
+      typescript: {
+        alwaysTryTypes: true,
+        project: './tsconfig.json',
+      },
       node: true,
     },
   },
@@ -31,7 +34,3 @@ module.exports = {
     'react/react-in-jsx-scope': ['off'],
   },
 };
-// 'plugin:import/recommended',
-//   'plugin:import/typescript',
-//   'airbnb-typescript',
-//   'prettier',
